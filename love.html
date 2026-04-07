@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>to my sweet boy</title>
+    <!-- Google Fonts для милых шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffd9e8 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: #a13e5f;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><path fill="%23ff85a1" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3c1.74,0 3.41.81 4.5,2.08C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.41 22,8.5c0,3.77-3.4,6.86-8.55,11.54L12,21.35Z"/></svg>') 12 10, auto;
+        }
+
+        /* Контейнер для всего контента */
+        .gift-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 250, 245, 0.85);
+            backdrop-filter: blur(3px);
+            border-radius: 70px 70px 90px 90px;
+            box-shadow: 0 25px 45px rgba(255, 105, 140, 0.25), 0 0 0 8px #fff8, 0 0 0 12px #ffb7c5;
+            padding: 25px 30px 40px;
+            transition: all 0.3s ease;
+        }
+
+        /* Заголовок с анимацией */
+        .main-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: #e85d8b;
+            text-shadow: 4px 4px 12px #ffb7c5;
+            margin-bottom: 10px;
+            animation: bounceSoft 2s infinite ease;
+        }
+
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .sub {
+            text-align: center;
+            font-size: 1.2rem;
+            background: #ffeef4;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 20px;
+            padding: 8px 24px;
+            border-radius: 60px;
+            box-shadow: inset 0 0 3px #ffc0d0, 0 6px 12px rgba(0,0,0,0.03);
+        }
+
+        /* Секция с гифками и картинками */
+        .media-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .cute-card {
+            background: white;
+            border-radius: 48px;
+            padding: 16px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 15px 25px rgba(232, 93, 139, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .cute-card:hover {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 0 20px 30px rgba(232, 93, 139, 0.35);
+        }
+
+        .cute-card img, .cute-card gif {
+            width: 100%;
+            border-radius: 32px;
+            max-height: 160px;
+            object-fit: cover;
+            background: #ffeef4;
+        }
+
+        .cute-card p {
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #bc5a7a;
+        }
+
+        /* Блок для заметок и приятностей (редактируемый) */
+        .love-notes {
+            background: #fff5f8;
+            border-radius: 64px;
+            padding: 30px 25px;
+            margin: 30px 0;
+            border: 2px dashed #ffa5be;
+            position: relative;
+        }
+
+        .love-notes h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .editable-message {
+            background: #fff0f5;
+            border-radius: 48px;
+            padding: 20px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #a13e5f;
+            font-weight: 500;
+            white-space: pre-wrap;
+            word-break: break-word;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        /* Делаем текст редактируемым (contenteditable) */
+        .editable-message[contenteditable="true"] {
+            border: 2px dashed #ff99bb;
+            background: #fffafd;
+            cursor: text;
+            outline: none;
+        }
+
+        .edit-hint {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            color: #d9799e;
+            background: #ffe2ed;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+
+        /* кнопка сброса текста по желанию */
+        .reset-btn {
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+            margin-left: 12px;
+            color: #e85d8b;
+            cursor: pointer;
+            background: #ffdee8;
+            padding: 4px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #ffb7c5;
+            color: white;
+        }
+
+        /* Секция для новых записей / стикеров */
+        .sticker-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 35px 0 20px;
+        }
+
+        .sticker {
+            background: white;
+            border-radius: 40px;
+            padding: 10px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .sticker:hover {
+            transform: scale(1.03) rotate(-1deg);
+            background: #ffeef4;
+        }
+
+        /* Форма добавления новых милых стикеров */
+        .add-sticker-area {
+            background: #ffe6ef;
+            border-radius: 60px;
+            padding: 15px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .add-sticker-area input {
+            border: none;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 40px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            width: 220px;
+            outline: none;
+            box-shadow: 0 2px 5px #ffbfcf;
+        }
+
+        .add-sticker-area button {
+            background: #e85d8b;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Quicksand', sans-serif;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 5px 0 #a13e5f;
+            transform: translateY(-2px);
+        }
+
+        .add-sticker-area button:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #a13e5f;
+        }
+
+        /* гиф контейнер для анимаций */
+        .floating-gif {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .floating-gif img {
+            max-width: 100px;
+            animation: float 3s infinite ease;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+/* адаптив */
+        @media (max-width: 680px) {
+            .gift-container {
+                padding: 20px 18px;
+            }
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .cute-card {
+                width: 150px;
+            }
+        }
+
+        button, .cute-card, [contenteditable] {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="gift-container">
+    <!-- Милый заголовок -->
+    <div class="main-title">
+        бусинка, пливеть 💗
+    </div>
+    <div style="text-align: center;">
+        <span class="sub">эта всо для тебя (p.s. редачить чота можеш, я увижу, когда зайду на сайт) </span>
+    </div>
+
+    <!-- Секция с картинками / гифками / милотой (можно менять ссылки на свои) -->
+    <div class="media-gallery" id="mediaGallery">
+        <!-- Эти карточки можно менять, добавлять новые через js или вручную, 
+             но для удобства сделаем базовые милые примеры и кнопку добавления гиф -->
+        <div class="cute-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGxzNGlwNWkyb3E0eXd4a2xieGl2aDcyM2JuaDRnc3BrZHJhczUxNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1JmGiBtqTuehfYxuy9/giphy.gif" alt="милый котик">
+            <p> ти мой котик </p>
+        </div>
+        <div class="cute-card">
+            <img src="https://www.reddit.com/r/pusheen/comments/1dnegxy/i_think_this_is_pusheen_and_her_boyfriend_tommy/?tl=ru" alt="обнимашки">
+            <p>💌</p>
+        </div>
+        <div class="cute-card">
+            <img src="https://tenor.com/ru/view/dress-up-darling-marin-kitagawa-poke-gif-1549898660179005549" alt="ми">
+            <p>эта ми</p>
+        </div>
+    </div>
+
+    <!-- Кнопка для добавления новой милой гифки/картинки -->
+    <div class="add-sticker-area" style="justify-content: center; margin-top: -10px; margin-bottom: 20px;">
+        <input type="text" id="newImageUrl" placeholder="Вставь URL гифки или картинки..." value="https://media.tenor.com/IRQzlhT7CxkAAAAi/cute-love.gif">
+        <input type="text" id="newImageText" placeholder="Подпись (например, 'поцелуйчик')" value=" чмок ">
+        <button id="addImageBtn">➕ добавить гифку</button>
+    </div>
+
+    <!-- Блок с приятностями и надписями (можно редактировать прямо на сайте!) -->
+    <div class="love-notes">
+        <h2>💌 мои слова для тебя 💌 <button id="resetTextBtn" class="reset-btn">сбросить текст</button></h2>
+        <div id="sweetMessage" class="editable-message" contenteditable="true">
+            ты самое ценное в моей жизни. <br>
+            мы знакомы мало, но надеюсь, проживём вместе невероятно долго. <br>
+            обнимаю тебя мысленно 1000 раз  <br>
+            ты — моя радость и вдохновение. люблю тебя бесконечно
+        </div>
+        <div class="edit-hint"> (нажми на текст, чтобы изменить — напиши свои тёплые слова!) </div>
+    </div>
+
+    <!-- стена со стикерами / фразами (тоже можно добавлять и редактировать) -->
+    <h2 style="font-family: 'Dancing Script'; text-align: center;"> копилка милых фразочек </h2>
+    <div id="stickerWall" class="sticker-wall">
+        <!-- стартовые стикеры -->
+        <div class="sticker"> ты мой герой </div>
+        <div class="sticker"> ты самый лучший </div>
+        <div class="sticker"> ты мой котёнок </div>
+        <div class="sticker"> люблю до звёзд </div>
+    </div>
+
+    <!-- Форма для добавления новой фразы / стикера -->
+    <div class="add-sticker-area">
+        <input type="text" id="newStickerText" placeholder="Новая фраза или комплимент..." value="целую обнимаю">
+        <button id="addStickerBtn"> добавить фразу 💌 </button>
+    </div>
+
+    <!-- Плавающая гифка для украшения (можно менять ссылку) -->
+    <div class="floating-gif">
+        <img src="https://media.tenor.com/NDWkP0O1y54AAAAi/sparkle-heart.gif" alt="блестящее сердечко" style="width: 70px;">
+        <img src="https://media.tenor.com/3FyZSYLsuZQAAAAi/cat-love.gif" alt="кот любовь" style="width: 70px; margin-left: 15px;">
+        <p style="font-size: 13px;">я таю от твоей нежности</p>
+    </div>
+<footer>
+        💗 мой подарок тебе — это место, где всегда живут тёплые слова 💗
+    </footer>
+</div>
+
+<script>
+    // --- 1. Управление редактируемым блоком с возможностью сохранения в localStorage (чтобы не сбрасывалось)
+    const messageDiv = document.getElementById('sweetMessage');
+    const resetBtn = document.getElementById('resetTextBtn');
+    
+    // Загружаем сохранённый текст, если есть
+    function loadSavedMessage() {
+        const saved = localStorage.getItem('cuteGiftMessage');
+        if (saved && saved.trim() !== "") {
+            messageDiv.innerHTML = saved;
+        } else {
+            // оставляем изначальный html
+        }
+    }
+    // Сохраняем при любом изменении (input, blur, и т.д)
+    function saveMessage() {
+        localStorage.setItem('cuteGiftMessage', messageDiv.innerHTML);
+    }
+    messageDiv.addEventListener('blur', saveMessage);
+    messageDiv.addEventListener('keyup', saveMessage);
+    // Также сохраняем, если меняется через contenteditable
+    loadSavedMessage();
+
+    // Сброс текста к оригинальному милому варианту
+    resetBtn.addEventListener('click', () => {
+        messageDiv.innerHTML = `мой родной, каждый день с тобой — как самый сладкий сон. <br>
+    спасибо, что ты есть. ты делаешь меня самой счастливой. <br>
+    обнимаю тебя мысленно 1000 раз <br>
+    ты — моя радость и вдохновение. люблю тебя бесконечно!`;
+        saveMessage();
+    });
+
+    // --- 2. Работа с галереей гифок / картинок (динамическое добавление)
+    const galleryContainer = document.getElementById('mediaGallery');
+    const addImageBtn = document.getElementById('addImageBtn');
+    const newImageUrl = document.getElementById('newImageUrl');
+    const newImageText = document.getElementById('newImageText');
+
+    // Функция создания новой карточки с картинкой/гифкой
+    function createImageCard(imageUrl, captionText) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'cute-card';
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = captionText;
+        // если картинка не грузится - покажем заглушку, чтобы не ломался вид
+        img.onerror = () => {
+            img.src = 'https://tenor.com/ru/view/heart-love-pusheen-cat-cute-i-love-you-gif-17589394';
+            img.alt = 'милая гифка';
+        };
+        const p = document.createElement('p');
+        p.innerText = captionText;
+        cardDiv.appendChild(img);
+        cardDiv.appendChild(p);
+        // Добавим кнопку удаления (маленький крестик) для удобства
+        const delBtn = document.createElement('button');
+        delBtn.innerText = '✖️';
+        delBtn.style.background = '#ffb7c5';
+        delBtn.style.border = 'none';
+        delBtn.style.borderRadius = '40px';
+        delBtn.style.fontSize = '0.7rem';
+        delBtn.style.padding = '4px 8px';
+        delBtn.style.marginTop = '8px';
+        delBtn.style.cursor = 'pointer';
+        delBtn.style.color = '#a13e5f';
+        delBtn.style.fontWeight = 'bold';
+        delBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cardDiv.remove();
+            saveGalleryToLocal();
+        });
+        cardDiv.appendChild(delBtn);
+        return cardDiv;
+    }
+
+    // Сохраняем галерею в localStorage (чтобы добавленные картинки не исчезали)
+    function saveGalleryToLocal() {
+        const cards = document.querySelectorAll('#mediaGallery .cute-card');
+        const galleryData = [];
+        cards.forEach(card => {
+            const img = card.querySelector('img');
+            const p = card.querySelector('p');
+            if (img && p) {
+                galleryData.push({
+                    url: img.src,
+                    caption: p.innerText
+                });
+            }
+        });
+        localStorage.setItem('cuteGallery', JSON.stringify(galleryData));
+    }
+
+    // Загрузка галереи из localStorage
+    function loadGalleryFromLocal() {
+        const stored = localStorage.getItem('cuteGallery');
+        if (stored) {
+            try {
+                const galleryData = JSON.
+parse(stored);
+                if (Array.isArray(galleryData) && galleryData.length > 0) {
+                    // очищаем контейнер, но оставляем дефолтные? Лучше полностью загрузить сохраненные, чтобы было как в прошлый раз
+                    galleryContainer.innerHTML = '';
+                    galleryData.forEach(item => {
+                        if (item.url && item.caption) {
+                            const card = createImageCard(item.url, item.caption);
+                            galleryContainer.appendChild(card);
+                        }
+                    });
+                } else {
+                    // если нет сохраненных, ничего не делаем, останутся дефолтные
+                }
+            } catch(e) { console.warn(e); }
+        }
+    }
+
+    // Добавление новой картинки
+    addImageBtn.addEventListener('click', () => {
+        let url = newImageUrl.value.trim();
+        let caption = newImageText.value.trim();
+        if (url === "") {
+            url = "https://media.tenor.com/IRQzlhT7CxkAAAAi/cute-love.gif";
+        }
+        if (caption === "") {
+            caption = "💗 милота 💗";
+        }
+        const newCard = createImageCard(url, caption);
+        galleryContainer.appendChild(newCard);
+        // очищаем поля, но можно оставить удобные подсказки
+        newImageUrl.value = "https://media.tenor.com/kyCYuE9QWxYAAAAi/love.gif";
+        newImageText.value = "новый сюрпризик";
+        saveGalleryToLocal();
+    });
+
+    // Загружаем галерею из памяти
+    loadGalleryFromLocal();
+    // Если галерея пуста после загрузки (нет сохраненных), то оставляем дефолтные, но сохраним их в localStorage
+    if (galleryContainer.children.length === 0) {
+        // маленькая инициализация дефолтных карточек вручную, но они уже есть в HTML, просто сохраним их
+        const defaultCards = document.querySelectorAll('#mediaGallery .cute-card');
+        if(defaultCards.length > 0) {
+            saveGalleryToLocal();
+        }
+    } else {
+        // если загрузили сохраненные, то все ок
+    }
+
+    // --- 3. Управление стеной стикеров / фраз (добавление, удаление, localStorage)
+    const stickerWall = document.getElementById('stickerWall');
+    const addStickerBtn = document.getElementById('addStickerBtn');
+    const newStickerInput = document.getElementById('newStickerText');
+
+    function createStickerElement(text) {
+        const stickerDiv = document.createElement('div');
+        stickerDiv.className = 'sticker';
+        stickerDiv.innerText = text;
+        // добавим крестик для удаления (чтобы можно было убирать ненужные)
+        const removeSpan = document.createElement('span');
+        removeSpan.innerText = ' ❌';
+        removeSpan.style.cursor = 'pointer';
+        removeSpan.style.fontSize = '0.7rem';
+        removeSpan.style.marginLeft = '6px';
+        removeSpan.style.opacity = '0.7';
+        removeSpan.addEventListener('click', (e) => {
+            e.stopPropagation();
+            stickerDiv.remove();
+            saveStickersToLocal();
+        });
+        stickerDiv.appendChild(removeSpan);
+        return stickerDiv;
+    }
+
+    function saveStickersToLocal() {
+        const stickers = document.querySelectorAll('#stickerWall .sticker');
+        const stickerTexts = [];
+        stickers.forEach(st => {
+            // текст без символа удаления
+            let rawText = st.innerText.replace('❌', '').trim();
+            stickerTexts.push(rawText);
+        });
+        localStorage.setItem('cuteStickers', JSON.stringify(stickerTexts));
+    }
+
+    function loadStickersFromLocal() {
+        const stored = localStorage.getItem('cuteStickers');
+        if (stored) {
+            try {
+                const stickerTexts = JSON.parse(stored);
+                if (Array.isArray(stickerTexts) && stickerTexts.length > 0) {
+                    stickerWall.innerHTML = '';
+                    stickerTexts.forEach(txt => {
+                        if (txt && txt.trim() !== "") {
+                            const newStick = createStickerElement(txt);
+                            stickerWall.appendChild(newStick);
+}
+                    });
+                }
+            } catch(e) {}
+        }
+    }
+
+    // Добавление нового стикера
+    addStickerBtn.addEventListener('click', () => {
+        let newText = newStickerInput.value.trim();
+        if (newText === "") {
+            newText = "💕 ты супер 💕";
+        }
+        const newSticker = createStickerElement(newText);
+        stickerWall.appendChild(newSticker);
+        newStickerInput.value = "💖 новая нежность 💖";
+        saveStickersToLocal();
+    });
+
+    // Загружаем стикеры из памяти
+    loadStickersFromLocal();
+    // если стенка пустая после загрузки (нет сохранений), то добавляем дефолтные и сохраняем
+    if (stickerWall.children.length === 0) {
+        const defaultPhrases = ["💖 Ты мой герой 💖", "✨ Ты самый лучший ✨", "🐣 Ты мой птенчик 🐣", "💫 Люблю до звёзд 💫"];
+        defaultPhrases.forEach(phrase => {
+            stickerWall.appendChild(createStickerElement(phrase));
+        });
+        saveStickersToLocal();
+    }
+
+    // дополнительная опция: если нажать на любую картинку из галереи — эффект пульсации (мило)
+    document.body.addEventListener('click', (e) => {
+        if(e.target.closest('.cute-card img')) {
+            const imgEl = e.target.closest('.cute-card img');
+            imgEl.style.transform = 'scale(1.05)';
+            setTimeout(() => { if(imgEl) imgEl.style.transform = ''; }, 200);
+        }
+    });
+
+    // Сохраняем галерею и стикеры при любых изменениях (удаление уже обработано)
+    // дополнительно для удаления карточек при нажатии крестика save уже есть.
+    // но для перемещений и прочего — ловим мутации? не обязательно, так как кнопки удаления вызывают сохранение.
+    // добавим сохранение при изменении текста в стикерах (contenteditable у стикеров нет, только удаление/добавление)
+    // а также при изменении сообщения в love-notes - уже сохраняется
+    
+    // Сделаем автоматическое сохранение при любом новом добавлении в галерею и стикеры:
+    const originalAddImage = addImageBtn.click;
+    // уже есть вызов saveGalleryToLocal в addImageBtn. Аналогично стикеры.
+    
+    // Чтобы можно было менять картинки, можно и картинку по клику менять (расширенная функция, но для простоты оставим)
+    console.log("💖 Сайт-подарок готов! Ты можешь менять текст, добавлять гифки, фразы. Всё сохранится! 💖");
+</script>
+</body>
+</html>
